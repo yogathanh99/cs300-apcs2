@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import {
   Collapse,
   Navbar,
@@ -9,35 +10,36 @@ import {
   NavLink
 } from "reactstrap";
 
+const Styles = styled.div`
+  .navbar {
+    background-color: transparent;
+  }
+`;
 const NavBar = props => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleNavbar = () => setCollapsed(!collapsed);
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar color="faded" light>
-        <NavbarBrand href="/" className="mr-auto">
-          BookTrader.
-        </NavbarBrand>
-        <Nav navbar className="mr-3">
-          <NavItem>
-            <NavLink href="/">{props.item1}</NavLink>
-          </NavItem>
-        </Nav>
-        <NavbarToggler onClick={toggleNavbar} className="mr-4" />
-        <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar>
+    <Styles>
+      <Navbar light expand="md">
+        <NavbarBrand href="/">BookTrader.</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="/">{props.item1}</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/">{props.item2}</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/">{props.item3}</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
-    </div>
+    </Styles>
   );
 };
 
