@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
+import { ThemeProvider } from 'styled-components';
 import App from './App';
+
+import GlobalStyles from './utils/global';
+import theme from './utils/theme';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <App />
+      <GlobalStyles />
+    </BrowserRouter>
+  </ThemeProvider>,
   document.getElementById('root'),
 );
 
