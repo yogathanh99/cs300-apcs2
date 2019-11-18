@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -14,6 +15,19 @@ const Styles = styled.div`
   .navbar {
     background-color: transparent;
   }
+  .navbar-brand {
+    font-size: 35px;
+  }
+  .nav-item {
+    font-size: 20px;
+    margin-left: 25px;
+  }
+  .nav-link a {
+    color: black;
+  }
+  .nav-link a:hover {
+    color: green;
+  }
 `;
 const NavBar = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,19 +36,25 @@ const NavBar = props => {
 
   return (
     <Styles>
-      <Navbar light expand="md">
+      <Navbar className="mx-4 fixed-top" light expand="md">
         <NavbarBrand href="/">BookTrader.</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/">{props.item1}</NavLink>
+              <NavLink>
+                <Link to={props.item1.link}>{props.item1.name}</Link>
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">{props.item2}</NavLink>
+              <NavLink>
+                <Link to={props.item2.link}>{props.item2.name}</Link>
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">{props.item3}</NavLink>
+              <NavLink>
+                <Link to={props.item3.link}>{props.item3.name}</Link>
+              </NavLink>
             </NavItem>
           </Nav>
         </Collapse>
