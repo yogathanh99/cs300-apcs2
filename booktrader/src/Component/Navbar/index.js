@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUserPlus,
+  faSignInAlt,
+  faBook
+} from "@fortawesome/free-solid-svg-icons";
 import {
   Collapse,
   Navbar,
@@ -25,6 +31,9 @@ const Styles = styled.div`
   .nav-link a {
     color: black;
   }
+  .nav-link svg {
+    margin-right: 10px;
+  }
   .nav-link a:hover {
     color: green;
   }
@@ -43,17 +52,26 @@ const NavBar = props => {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink>
-                <Link to={props.item1.link}>{props.item1.name}</Link>
+                <Link to={props.item1.link}>
+                  <FontAwesomeIcon icon={faBook} />
+                  {props.item1.name}
+                </Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link to={props.item2.link}>{props.item2.name}</Link>
+                <Link to={props.item2.link}>
+                  <FontAwesomeIcon icon={faSignInAlt} />
+                  {props.item2.name}
+                </Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link to={props.item3.link}>{props.item3.name}</Link>
+                <Link to={props.item3.link}>
+                  <FontAwesomeIcon icon={faUserPlus} />
+                  {props.item3.name}
+                </Link>
               </NavLink>
             </NavItem>
           </Nav>
