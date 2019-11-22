@@ -7,8 +7,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import StorePage from './pages/StorePage';
+import Detail from './pages/Detail';
 import Navbar from './components/Navbar';
-import './App.css';
+// import './App.css';
 
 const navItem = [
   {
@@ -39,6 +40,7 @@ function App() {
           <Route exact path='/store' component={StorePage} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
+          <Route path='/detail' component={Detail} />
           <Route component={ErrorPage} />
         </Switch>
       </Wrapper>

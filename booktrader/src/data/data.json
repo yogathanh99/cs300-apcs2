@@ -1,0 +1,12 @@
+{
+  "title": "Lorem Ipsum",
+  "des": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel lacinia risus. Curabitur eget quam vestibulum, auctor erat sit amet, suscipit metus. Maecenas maximus urna id arcu aliquet pulvinar. In hac habitasse platea dictumst. Aliquam eget lectus vel sem interdum malesuada eu in orci. Suspendisse eu urna ut nibh pulvinar sodales in sed augue. Maecenas nec ullamcorper enim. Phasellus et tempus lorem. Integer commodo enim vitae massa porttitor, sed tincidunt arcu cursus. Ut hendrerit lacus enim, ut maximus felis finibus vel. Maecenas quis vehicula odio, ac volutpat odio. Sed erat risus, molestie quis leo vel, fringilla egestas urna. Mauris euismod bibendum lorem, non accumsan justo tristique in. Curabitur malesuada lacus risus, nec venenatis sem mattis et. Maecenas eleifend consectetur nisl, eget auctor justo porta id.",
+  "tags": [
+    "hello",
+    "hi"
+  ],
+  "image": "https://newshop.vn/public/uploads/products/10497/bui-sao-bia.gif",
+  "author": "Thanh Vo",
+  "date": "24/12/2019",
+  "available": true
+}
