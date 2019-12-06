@@ -1,37 +1,33 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
+import {
+  Wrapper,
+  Title,
+  Tag,
+  Button,
+  User,
+  SubTitle,
+  Des,
+  WrapperRelated,
+} from './index.style';
+import BookTab from '../../components/BookTab';
+import cover from '../../images/cover.png';
+
 import data from '../../data/data.json';
 
-const Wrapper = styled.div`
-  text-align: center;
-`;
-
-const Button = styled.button`
-  font-family: 'Manjari', sans-serif;
-  font-size: 3.5rem;
-  background: var(--color-mainButton);
-  width: 33.5rem;
-  height: 8rem;
-  border: none;
-  &:forcus-visible,
-  &:focus {
-    outline: 0;
-  }
-`;
-
 const Detail = () => {
-  const { title, des, tags, image, author, date, avaiable } = data;
+  const { title, subTitle, des, tags, image, author, date, avaiable } = data;
+  console.log(avaiable);
   return (
     <>
       <hr />
       <Wrapper>
-        <h1>{title}</h1>
+        <Title>{title}</Title>
         {tags.map((tag, i) => (
-          <button key={i}>{tag}</button>
+          <Tag key={i}>{tag}</Tag>
         ))}
       </Wrapper>
       <Container>
@@ -42,16 +38,23 @@ const Detail = () => {
               src={image}
               alt='book-cover'
             />
-            <Button>Borrow</Button>
+            <Button avaiable={avaiable}>Borrow</Button>
           </Col>
           <Col xs='8'>
-            <p>
-              <FontAwesomeIcon icon={faUser} />
+            <User>
+              <FontAwesomeIcon icon={faUser} style={{ marginRight: '.5rem' }} />
               {author}, {date}
-            </p>
-            <p>{des}</p>
+            </User>
+            {subTitle ? <SubTitle>{subTitle}</SubTitle> : ''}
+            <Des>{des}</Des>
           </Col>
         </Row>
+        <WrapperRelated>Related books</WrapperRelated>
+        <BookTab img={cover} title='Lorem'>
+          qualisque pro. Duo laoreet dissentiunt ei, autem prodesset deseruisse
+          in quo.
+        </BookTab>
+        <div style={{ marginTop: '10rem' }}>Hello</div>
       </Container>
     </>
   );
