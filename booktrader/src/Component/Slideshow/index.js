@@ -23,13 +23,16 @@ const Styles = styled.div`
 `;
 const items = [
   {
-    src: `${book}`
+    src: `${book}`,
+    altText: "Book 1"
   },
   {
-    src: `${book}`
+    src: `${book}`,
+    altText: "Book 2"
   },
   {
-    src: `${book}`
+    src: `${book}`,
+    altText: "Book 3"
   }
 ];
 
@@ -60,7 +63,7 @@ const Slideshow = props => {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <img src={item.src} />
+        <img src={item.src} alt={item.altText} />
       </CarouselItem>
     );
   });

@@ -40,9 +40,22 @@ const Styles = styled.div`
 `;
 const NavBar = props => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
-
+  const HandleIcon = icon => {
+    if (icon === "Book") return faBook;
+    else if (icon === "SignIn") return faSignInAlt;
+    else if (icon === "SignUp") return faUserPlus;
+  };
+  const listItems = props.list_item.map(item => (
+    <NavItem>
+      <NavLink>
+        <Link to={item.link}>
+          <FontAwesomeIcon icon={HandleIcon(item.icon)} />
+          {item.name}
+        </Link>
+      </NavLink>
+    </NavItem>
+  ));
   return (
     <Styles>
       <Navbar className="mx-4 fixed-top" light expand="md">
@@ -50,30 +63,7 @@ const NavBar = props => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink>
-                <Link to={props.item1.link}>
-                  <FontAwesomeIcon icon={faBook} />
-                  {props.item1.name}
-                </Link>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink>
-                <Link to={props.item2.link}>
-                  <FontAwesomeIcon icon={faSignInAlt} />
-                  {props.item2.name}
-                </Link>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink>
-                <Link to={props.item3.link}>
-                  <FontAwesomeIcon icon={faUserPlus} />
-                  {props.item3.name}
-                </Link>
-              </NavLink>
-            </NavItem>
+            {listItems}
           </Nav>
         </Collapse>
       </Navbar>

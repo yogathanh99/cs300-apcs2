@@ -5,18 +5,22 @@ import cover from "../../assets/cover.png";
 import Carousel from "../../Component/Slideshow";
 import Jumbo from "../../Component/Jumbo";
 import Footer from "../../Component/Footer";
+
 const list_item = [
   {
     link: "/store",
-    name: "Store"
+    name: "Store",
+    icon: "Book"
   },
   {
     link: "/login",
-    name: "Log in"
+    name: "Log in",
+    icon: "SignIn"
   },
   {
     link: "/signup",
-    name: "Sign up"
+    name: "Sign up",
+    icon: "SignUp"
   }
 ];
 const Home = () => {
@@ -29,11 +33,7 @@ const Home = () => {
         }}
         fluid
       >
-        <NavBar
-          item1={list_item[0]}
-          item2={list_item[1]}
-          item3={list_item[2]}
-        />
+        <NavBar list_item={list_item} />
       </Jumbotron>
       <Container className="my-5" fluid>
         <h1>Our Vision</h1>
