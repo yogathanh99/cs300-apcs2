@@ -1,27 +1,33 @@
-import React from "react";
-import NavBar from "../../Component/Navbar";
-import { Jumbotron, Container } from "reactstrap";
-import cover from "../../assets/cover.png";
-import Carousel from "../../Component/Slideshow";
-import Jumbo from "../../Component/Jumbo";
-import Footer from "../../Component/Footer";
+import React from 'react';
+import NavBar from '../../Component/Navbar';
+import { Jumbotron, Container } from 'reactstrap';
+import {
+  faUserPlus,
+  faSignInAlt,
+  faBook,
+} from '@fortawesome/free-solid-svg-icons';
+
+import cover from '../../assets/cover.png';
+import Carousel from '../../Component/Slideshow';
+import Jumbo from '../../Component/Jumbo';
+import Footer from '../../Component/Footer';
 
 const list_item = [
   {
-    link: "/store",
-    name: "Store",
-    icon: "Book"
+    link: '/store',
+    name: 'Store',
+    icon: faBook,
   },
   {
-    link: "/login",
-    name: "Log in",
-    icon: "SignIn"
+    link: '/login',
+    name: 'Log in',
+    icon: faSignInAlt,
   },
   {
-    link: "/signup",
-    name: "Sign up",
-    icon: "SignUp"
-  }
+    link: '/signup',
+    name: 'Sign up',
+    icon: faUserPlus,
+  },
 ];
 const Home = () => {
   return (
@@ -29,13 +35,13 @@ const Home = () => {
       <Jumbotron
         style={{
           background: `url(${cover}) center center / cover no-repeat`,
-          height: "650px"
+          height: '650px',
         }}
         fluid
       >
         <NavBar list_item={list_item} />
       </Jumbotron>
-      <Container className="my-5" fluid>
+      <Container className='my-5' fluid>
         <h1>Our Vision</h1>
         <br />
         <p>
