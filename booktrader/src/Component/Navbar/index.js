@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-} from 'reactstrap';
+  NavItem
+} from "reactstrap";
 
 const Styles = styled.div`
   .navbar {
@@ -52,11 +52,11 @@ const NavBar = props => {
 
   return (
     <Styles>
-      <Navbar className='mx-4 fixed-top' light expand='md'>
-        <NavbarBrand href='/'>BookTrader.</NavbarBrand>
+      <Navbar className="mx-4 fixed-top" light expand="md">
+        <NavbarBrand href="/">BookTrader.</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className='ml-auto' navbar>
+          <Nav className="ml-auto" navbar>
             {listItems}
           </Nav>
         </Collapse>
