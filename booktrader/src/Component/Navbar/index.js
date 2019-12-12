@@ -1,41 +1,63 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink
+  NavItem
 } from "reactstrap";
 
 const Styles = styled.div`
   .navbar {
     background-color: transparent;
   }
+  .navbar-brand {
+    font-size: 35px;
+  }
+  .nav-item {
+    font-size: 20px;
+    margin-left: 25px;
+    color: black;
+  }
 `;
+
+const StyleLink = styled(Link)`
+  color: black;
+
+  &:hover {
+    color: green;
+  }
+
+  & svg {
+    margin-right: 10px;
+  }
+`;
+
 const NavBar = props => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
+
+  const listItems = props.list_item.map(item => (
+    <NavItem key={item.name}>
+      <StyleLink to={item.link}>
+        <FontAwesomeIcon icon={item.icon} />
+        {item.name}
+      </StyleLink>
+    </NavItem>
+  ));
 
   return (
     <Styles>
-      <Navbar light expand="md">
+      <Navbar className="mx-4 fixed-top" light expand="md">
         <NavbarBrand href="/">BookTrader.</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="/">{props.item1}</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">{props.item2}</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">{props.item3}</NavLink>
-            </NavItem>
+            {listItems}
           </Nav>
         </Collapse>
       </Navbar>
