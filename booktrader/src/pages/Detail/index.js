@@ -14,9 +14,9 @@ import {
   WrapperRelated,
   WrapperContent,
 } from './index.style';
-import BookTab from '../../components/BookTab';
-import Footer from '../../components/Footer';
-import cover from '../../images/cover.png';
+import BookTab from '../../Component/BookTab';
+import Footer from '../../Component/Footer';
+import cover from '../../assets/book-cover.png';
 
 import data from '../../data/data.json';
 

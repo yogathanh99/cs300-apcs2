@@ -1,6 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import styled from 'styled-components';
+import {
+  faUserPlus,
+  faSignInAlt,
+  faBook,
+} from '@fortawesome/free-solid-svg-icons';
 
 import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
@@ -8,42 +12,39 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import StorePage from './pages/StorePage';
 import Detail from './pages/Detail';
-import Navbar from './components/Navbar';
+import Navbar from './Component/Navbar';
 // import './App.css';
 
-const navItem = [
+const list_item = [
   {
     link: '/store',
     name: 'Store',
+    icon: faBook,
   },
   {
     link: '/login',
     name: 'Log in',
+    icon: faSignInAlt,
   },
   {
     link: '/signup',
     name: 'Sign up',
+    icon: faUserPlus,
   },
 ];
-
-const Wrapper = styled.div`
-  height: 80vh;
-`;
 
 function App() {
   return (
     <div className='App'>
-      <Navbar items={navItem} />
-      <Wrapper>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/store' component={StorePage} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/signup' component={Signup} />
-          <Route path='/detail' component={Detail} />
-          <Route component={ErrorPage} />
-        </Switch>
-      </Wrapper>
+      <Navbar list_item={list_item} />
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/store' component={StorePage} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/signup' component={Signup} />
+        <Route path='/detail' component={Detail} />
+        <Route component={ErrorPage} />
+      </Switch>
     </div>
   );
 }

@@ -4,8 +4,8 @@ export default createGlobalStyle`
   *,
   *::before,
   *::after {
-    margin: 0;
-    padding: 0;
+    ${'' /* margin: 0;
+    padding: 0; */}
     box-sizing: inherit;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

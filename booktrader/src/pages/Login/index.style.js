@@ -31,3 +31,10 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const Style = styled.div`
+  height: 90vh;
+  padding: 0;
+  margin: 0;
+  position: relative;
+`;

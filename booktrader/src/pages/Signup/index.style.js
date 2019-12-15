@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const Wrapper = styled.div`
+  margin-top: 7rem;
+`;
+
 export const Img = styled.img`
+  display: flex;
   margin-top: 10rem;
 `;
 
@@ -37,4 +42,12 @@ export const StyleLink = styled(Link)`
     text-decoration: none;
     color: black;
   }
+`;
+
+export const Right = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
