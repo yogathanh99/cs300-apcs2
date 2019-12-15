@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
-} from "reactstrap";
+  NavItem,
+} from 'reactstrap';
 
 const Styles = styled.div`
   .navbar {
@@ -37,6 +37,11 @@ const StyleLink = styled(Link)`
   }
 `;
 
+const StyleNavbar = styled(Navbar)`
+  padding: 0 9.9rem !important;
+  padding-top: 2rem !important;
+`;
+
 const NavBar = props => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -52,15 +57,15 @@ const NavBar = props => {
 
   return (
     <Styles>
-      <Navbar className="mx-4 fixed-top" light expand="md">
-        <NavbarBrand href="/">BookTrader.</NavbarBrand>
+      <StyleNavbar className='mx-4 fixed-top' light expand='md'>
+        <NavbarBrand href='/'>BookTrader.</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
+          <Nav className='ml-auto' navbar>
             {listItems}
           </Nav>
         </Collapse>
-      </Navbar>
+      </StyleNavbar>
     </Styles>
   );
 };

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators
-} from "reactstrap";
-import book from "../../assets/book1.png";
-import styled from "styled-components";
+  CarouselIndicators,
+} from 'reactstrap';
+import book from '../../assets/book1.png';
+import styled from 'styled-components';
 
 const Styles = styled.div`
   .carousel {
@@ -21,22 +21,29 @@ const Styles = styled.div`
     filter: invert(100%);
   }
 `;
+
+const StyleItem = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 const items = [
   {
     src: `${book}`,
-    altText: "Book 1"
+    altText: 'Book 1',
   },
   {
     src: `${book}`,
-    altText: "Book 2"
+    altText: 'Book 2',
   },
   {
     src: `${book}`,
-    altText: "Book 3"
-  }
+    altText: 'Book 3',
+  },
 ];
 
-const Slideshow = props => {
+const Slideshow = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -56,14 +63,16 @@ const Slideshow = props => {
     setActiveIndex(newIndex);
   };
 
-  const slides = items.map(item => {
+  const slides = items.map((item, i) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={item.src}
+        key={i}
       >
-        <img src={item.src} alt={item.altText} />
+        <StyleItem>
+          <img src={item.src} alt={item.altText} />
+        </StyleItem>
       </CarouselItem>
     );
   });
@@ -78,13 +87,13 @@ const Slideshow = props => {
         />
         {slides}
         <CarouselControl
-          direction="prev"
-          directionText="Previous"
+          direction='prev'
+          directionText='Previous'
           onClickHandler={previous}
         />
         <CarouselControl
-          direction="next"
-          directionText="Next"
+          direction='next'
+          directionText='Next'
           onClickHandler={next}
         />
       </Carousel>

@@ -1,46 +1,22 @@
 import React from 'react';
-import NavBar from '../../Component/Navbar';
 import { Jumbotron, Container } from 'reactstrap';
-import {
-  faUserPlus,
-  faSignInAlt,
-  faBook,
-} from '@fortawesome/free-solid-svg-icons';
 
 import cover from '../../assets/cover.png';
 import Carousel from '../../Component/Slideshow';
 import Jumbo from '../../Component/Jumbo';
 import Footer from '../../Component/Footer';
 
-const list_item = [
-  {
-    link: '/store',
-    name: 'Store',
-    icon: faBook,
-  },
-  {
-    link: '/login',
-    name: 'Log in',
-    icon: faSignInAlt,
-  },
-  {
-    link: '/signup',
-    name: 'Sign up',
-    icon: faUserPlus,
-  },
-];
 const Home = () => {
   return (
-    <React.Fragment>
+    <>
       <Jumbotron
         style={{
           background: `url(${cover}) center center / cover no-repeat`,
-          height: '650px',
+          height: '60rem',
+          zIndex: '-100',
         }}
         fluid
-      >
-        <NavBar list_item={list_item} />
-      </Jumbotron>
+      ></Jumbotron>
       <Container className='my-5' fluid>
         <h1>Our Vision</h1>
         <br />
@@ -54,11 +30,11 @@ const Home = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Container>
-      <h1>Find your favorite book</h1>
+      <h1 style={{ paddingLeft: '1.2rem' }}>Find your favorite book</h1>
       <Carousel />
       <Jumbo />
       <Footer />
-    </React.Fragment>
+    </>
   );
 };
 

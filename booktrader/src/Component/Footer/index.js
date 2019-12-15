@@ -1,20 +1,44 @@
-import React from "react";
-import styled from "styled-components";
-import { Container } from "reactstrap";
+import React from 'react';
+import { Container } from 'reactstrap';
+import styled from 'styled-components';
 
-const Styles = styled.div`
-  .container-fluid {
-    background-color: #f0f0f0;
-  }
+const Wrapper = styled.div`
+  width: 100%;
+  height: 9.4rem;
+  background: #f0f0f0;
 `;
-const Footer = () => {
+
+const StyleContainer = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 9.4rem;
+`;
+
+const Title = styled.h5`
+  font-family: 'Manjari', sans-serif;
+  font-size: 2rem;
+  line-height: 2rem;
+`;
+
+const Content = styled.p`
+  font-family: 'Open Sans', sans-serif;
+`;
+
+const Footer = ({ title, children }) => {
   return (
-    <Styles>
-      <Container fluid>
-        <h2>Footer</h2>
-        <p>Trung is in loveeeee</p>
-      </Container>
-    </Styles>
+    <>
+      {title ? (
+        <Wrapper>
+          <StyleContainer>
+            <Title>{title}</Title>
+            <Content>{children}</Content>
+          </StyleContainer>
+        </Wrapper>
+      ) : (
+        <Wrapper />
+      )}
+    </>
   );
 };
 
