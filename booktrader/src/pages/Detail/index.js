@@ -12,8 +12,10 @@ import {
   SubTitle,
   Des,
   WrapperRelated,
+  WrapperContent,
 } from './index.style';
 import BookTab from '../../components/BookTab';
+import Footer from '../../components/Footer';
 import cover from '../../images/cover.png';
 
 import data from '../../data/data.json';
@@ -45,17 +47,24 @@ const Detail = () => {
               <FontAwesomeIcon icon={faUser} style={{ marginRight: '.5rem' }} />
               {author}, {date}
             </User>
-            {subTitle ? <SubTitle>{subTitle}</SubTitle> : ''}
-            <Des>{des}</Des>
           </Col>
         </Row>
+        <WrapperContent>
+          {subTitle ? <SubTitle>{subTitle}</SubTitle> : ''}
+          <Des>{des}</Des>
+        </WrapperContent>
         <WrapperRelated>Related books</WrapperRelated>
         <BookTab img={cover} title='Lorem'>
           qualisque pro. Duo laoreet dissentiunt ei, autem prodesset deseruisse
           in quo.
         </BookTab>
-        <div style={{ marginTop: '10rem' }}>Hello</div>
       </Container>
+      <div style={{ marginTop: '10rem' }}>
+        <Footer title='BookTrader'>
+          Lorem ipsum dolor sit amet. Duo laoreet dissentiunt ei, autem
+          prodesset deseruisse in quo.
+        </Footer>
+      </div>
     </>
   );
 };

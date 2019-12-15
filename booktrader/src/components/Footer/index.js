@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'reactstrap';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -7,6 +8,38 @@ const Wrapper = styled.div`
   background: #f0f0f0;
 `;
 
-export const FooterLogin = () => {
-  return <Wrapper />;
+const StyleContainer = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 9.4rem;
+`;
+
+const Title = styled.h5`
+  font-family: 'Manjari', sans-serif;
+  font-size: 2rem;
+  line-height: 2rem;
+`;
+
+const Content = styled.p`
+  font-family: 'Open Sans', sans-serif;
+`;
+
+const Footer = ({ title, children }) => {
+  return (
+    <>
+      {title ? (
+        <Wrapper>
+          <StyleContainer>
+            <Title>{title}</Title>
+            <Content>{children}</Content>
+          </StyleContainer>
+        </Wrapper>
+      ) : (
+        <Wrapper />
+      )}
+    </>
+  );
 };
+
+export default Footer;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import InputForm from '../../components/InputForm';
-import { FooterLogin } from '../../components/Footer';
+import Footer from '../../components/Footer';
 import { ReactComponent as LoginFacebook } from '../../images/login-facebook.svg';
 import { Wrapper, Button, StyleText, StyleStrong } from './index.style';
 
@@ -18,7 +18,7 @@ const Login = () => {
           Don't have an account ? <StyleStrong>Register</StyleStrong>
         </StyleText>
       </Wrapper>
-      <FooterLogin />
+      <Footer />
     </>
   );
 };

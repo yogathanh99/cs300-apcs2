@@ -65,3 +65,7 @@ export const WrapperRelated = styled.p`
   margin-top: 10rem;
   margin-bottom: 5rem;
 `;
+
+export const WrapperContent = styled.div`
+  margin-top: 12rem;
+`;
