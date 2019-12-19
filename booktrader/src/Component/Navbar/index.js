@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
 
 const Styles = styled.div`
   .navbar {
@@ -37,6 +30,16 @@ const StyleLink = styled(Link)`
   }
 `;
 
+const StyleNavBrand = styled(Link)`
+  color: black;
+  font-size: 3.5rem;
+
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+`;
+
 const StyleNavbar = styled(Navbar)`
   padding: 0 9.9rem !important;
   padding-top: 2rem !important;
@@ -58,7 +61,7 @@ const NavBar = props => {
   return (
     <Styles>
       <StyleNavbar className='mx-4 fixed-top' light expand='md'>
-        <NavbarBrand href='/'>BookTrader.</NavbarBrand>
+        <StyleNavBrand to='/'>BookTrader.</StyleNavBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className='ml-auto' navbar>
