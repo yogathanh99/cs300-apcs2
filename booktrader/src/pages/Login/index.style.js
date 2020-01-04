@@ -1,20 +1,20 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Button = styled.button`
-  font-family: 'Manjari', sans-serif;
+  font-family: "Manjari", sans-serif;
   font-size: 3.5rem;
   background: var(--color-mainButton);
   width: 40rem;
   height: 8rem;
   border: none;
-  &:forcus-visible,
+  &:focus-visible,
   &:focus {
     outline: 0;
   }
 `;
 
 export const StyleText = styled.p`
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin-top: 1rem;
   font-size: 2.8rem;
   font-weight: normal;
