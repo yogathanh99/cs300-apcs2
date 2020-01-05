@@ -51,12 +51,3 @@ const mapStateToProps = ({ firebase }) => ({
 });
 
 export default connect(mapStateToProps)(App);
-
-/* <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/store' component={StorePage} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/signup' component={Signup} />
-        <Route path='/detail' component={Detail} />
-        <Route component={ErrorPage} />
-      </Switch> */
