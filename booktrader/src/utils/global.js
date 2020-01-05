@@ -20,6 +20,16 @@ export default createGlobalStyle`
     font-size: 62.5%;
     box-sizing: border-box;
     --color-mainButton: ${props => props.theme.colors.mainButton};
+    --color-main: ${props => props.theme.colors.main}
+    --color-mainDark: ${props => props.theme.colors.mainDark};
+    --color-mainLight: ${props => props.theme.colors.mainLight};
+    --color-mainLighter: ${props => props.theme.colors.mainLighter};
+    --color-text: ${props => props.theme.colors.textColor};
+    --color-white: ${props => props.theme.colors.whiteColor};
+    --color-error: ${props => props.theme.colors.errorRed};
+    --color-submit: ${props => props.theme.colors.submitGreen};
+    --color-edit: ${props => props.theme.colors.editBlue};
+    --shadow: ${props => props.theme.colors.shadow};
     
     @media ${props => props.theme.mediaQueries.small} {
       font-size: 60%;

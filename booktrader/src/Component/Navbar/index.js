@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
+import { connect } from 'react-redux';
 
 const Styles = styled.div`
   .navbar {
@@ -65,6 +66,7 @@ const NavBar = props => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className='ml-auto' navbar>
+            <NavItem>{props.firebase.profile.name}</NavItem>
             {listItems}
           </Nav>
         </Collapse>
@@ -73,4 +75,8 @@ const NavBar = props => {
   );
 };
 
-export default NavBar;
+const mapStateToProps = state => ({
+  firebase: state.firebase,
+});
+
+export default connect(mapStateToProps)(NavBar);
