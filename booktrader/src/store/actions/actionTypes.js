@@ -6,4 +6,8 @@ export const VERIFY_START = 'VERIFY_START';
 export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 export const VERIFY_FAIL = 'VERIFY_FAIL';
 
+export const FETCH_BOOKS_START = 'FETCH_BOOKS_START';
+export const FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS';
+export const FETCH_BOOKS_FAIL = 'FETCH_BOOKS_FAIL';
+
 export const CLEAN_UP = 'CLEAN_UP';

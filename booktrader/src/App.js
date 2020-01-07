@@ -9,10 +9,12 @@ import Logout from './pages/LogOut';
 import VerifyEmail from './pages/VerifyEmail';
 import StorePage from './pages/StorePage';
 import Detail from './pages/Detail';
+import Profile from './pages/Profile';
 import Layout from './hoc/Layout';
 // import './App.css';
 
-function App({ loggedIn, emailVerified }) {
+function App({ loggedIn, emailVerified, photoURL }) {
+  if (/facebook.com/.test(photoURL)) emailVerified = true;
   let routes;
   if (loggedIn && !emailVerified) {
     routes = (
@@ -28,17 +30,20 @@ function App({ loggedIn, emailVerified }) {
         <Route exact path='/' component={Home} />
         <Route exact path='/store' component={StorePage} />
         <Route exact path='/logout' component={Logout} />
+        <Route exact path='/profile' component={Profile} />
         <Route path='/detail' component={Detail} />
-        <Redirect to='/' />
+        <Redirect to='/store' />
       </Switch>
     );
   } else {
     routes = (
       <Switch>
         <Route exact path='/signup' component={Signup} />
+        <Route path='/detail' component={Detail} />
+        <Route exact path='/store' component={StorePage} />
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
-        <Redirect to='/signup' />
+        <Redirect to='/' />
       </Switch>
     );
   }
@@ -48,6 +53,7 @@ function App({ loggedIn, emailVerified }) {
 const mapStateToProps = ({ firebase }) => ({
   loggedIn: firebase.auth.uid,
   emailVerified: firebase.auth.emailVerified,
+  photoURL: firebase.auth.photoURL,
 });
 
 export default connect(mapStateToProps)(App);

@@ -5,6 +5,7 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import * as actions from '../../store/actions';
 
+import firebase from '../../Firebase';
 import InputForm from '../../Component/InputForm';
 import Button from '../../Component/Button';
 import Message from '../../Component/Message';
@@ -34,12 +35,13 @@ const schemaLogin = Yup.object().shape({
     .min(8, 'Password must have min 8 characters'),
 });
 
-const Login = ({ error, loading, login, cleanUp }) => {
+const Login = ({ error, loading, login, loginFacebook, cleanUp }) => {
   useEffect(() => {
     return () => {
       cleanUp();
     };
   }, [cleanUp]);
+
   return (
     <Style>
       <Wrapper>
@@ -86,7 +88,12 @@ const Login = ({ error, loading, login, cleanUp }) => {
           )}
         </Formik>
         <StyleText>or log in using</StyleText>
-        <LoginFacebook style={{ cursor: 'pointer' }} />
+        <LoginFacebook
+          style={{ cursor: 'pointer' }}
+          onClick={async () => {
+            await loginFacebook();
+          }}
+        />
         <StyleText>
           Don't have an account ?{' '}
           <StyleStrong>
@@ -106,6 +113,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   login: actions.logIn,
+  loginFacebook: actions.loginFacebook,
   cleanUp: actions.cleanUp,
 };
 

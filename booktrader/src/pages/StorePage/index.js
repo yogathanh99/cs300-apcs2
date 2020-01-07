@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Jumbotron, Container } from 'reactstrap';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import cover from '../../assets/cover.png';
+import bookCover from '../../assets/book-cover.png';
 import { ReactComponent as Magnifier } from '../../assets/magnifying-glass.svg';
 import BookTab from '../../Component/BookTab';
 import Footer from '../../Component/Footer';
+import FourColGrid from '../../Component/FourColGrid';
+import BookThumb from '../../Component/BookThumb';
 import {
   WrapSearch,
   Line,
@@ -15,6 +19,7 @@ import {
 } from './index.style';
 
 import data from '../../data/data.json';
+import * as actions from '../../store/actions';
 
 const StyleMagnifier = styled(Magnifier)`
   fill: rgba(0, 0, 0, 0.4);
@@ -28,8 +33,11 @@ const Wrapper = styled.div`
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 `;
 
-const StorePage = () => {
-  const { tags } = data;
+const StorePage = ({ books, fetchBooks }) => {
+  useEffect(() => {
+    fetchBooks();
+  }, [fetchBooks]);
+
   return (
     <>
       <Wrapper>
@@ -49,15 +57,29 @@ const StorePage = () => {
               <StyleMagnifier />
             </span>
             <WrapperTags>
-              {tags.map((tag, i) => (
+              {data.tags.map((tag, i) => (
                 <Tag key={i}>{tag}</Tag>
               ))}
             </WrapperTags>
           </WrapSearch>
         </Container>
       </Wrapper>
-      <Container>
-        <WrapperBooks>Newest books</WrapperBooks>
+      <Container
+        style={{
+          marginTop: '2rem',
+        }}
+      >
+        <FourColGrid>
+          <BookThumb image={bookCover} />
+          <BookThumb image={bookCover} />
+          <BookThumb image={bookCover} />
+          <BookThumb image={bookCover} />
+          <BookThumb image={bookCover} />
+          <BookThumb image={bookCover} />
+          <BookThumb image={bookCover} />
+          <BookThumb image={bookCover} />
+        </FourColGrid>
+        {/* <WrapperBooks>Newest books</WrapperBooks>
         <BookTab img={cover} title='Lorem'>
           qualisque pro. Duo laoreet dissentiunt ei, autem prodesset deseruisse
           in quo.
@@ -66,9 +88,9 @@ const StorePage = () => {
         <BookTab img={cover} title='Lorem'>
           qualisque pro. Duo laoreet dissentiunt ei, autem prodesset deseruisse
           in quo.
-        </BookTab>
+        </BookTab> */}
       </Container>
-      <div style={{ marginTop: '10rem' }}>
+      <div style={{ marginTop: '2rem' }}>
         <Footer title='BookTrader'>
           Lorem ipsum dolor sit amet. Duo laoreet dissentiunt ei, autem
           prodesset deseruisse in quo.
@@ -78,4 +100,14 @@ const StorePage = () => {
   );
 };
 
-export default StorePage;
+const mapStateToProps = state => ({
+  books: state.books.books,
+  loading: state.books.loading,
+  error: state.books.error,
+});
+
+const mapDispatchToProps = {
+  fetchBooks: actions.fetchBooks,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StorePage);

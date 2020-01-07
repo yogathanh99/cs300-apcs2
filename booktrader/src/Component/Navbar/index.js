@@ -46,6 +46,16 @@ const StyleNavbar = styled(Navbar)`
   padding-top: 2rem !important;
 `;
 
+const StyleName = styled(Link)`
+  color: black;
+  font-size: 2rem;
+
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+`;
+
 const NavBar = props => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -66,7 +76,11 @@ const NavBar = props => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className='ml-auto' navbar>
-            <NavItem>{props.firebase.profile.name}</NavItem>
+            <StyleName to='/profile'>
+              {props.firebase.profile.name
+                ? props.firebase.profile.name
+                : props.firebase.auth.displayName}
+            </StyleName>
             {listItems}
           </Nav>
         </Collapse>

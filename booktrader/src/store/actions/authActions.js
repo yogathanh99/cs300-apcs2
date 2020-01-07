@@ -44,9 +44,22 @@ export const logOut = () => async (dispatch, _, { getFirebase }) => {
 //logIn actions
 export const logIn = data => async (dispatch, _, { getFirebase }) => {
   const firebase = getFirebase();
+
   dispatch({ type: actionTypes.AUTH_START });
   try {
     await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
+    dispatch({ type: actionTypes.AUTH_SUCCESS });
+  } catch (err) {
+    dispatch({ type: actionTypes.AUTH_FAIL, payload: err.message });
+  }
+};
+
+export const loginFacebook = () => async (dispatch, _, { getFirebase }) => {
+  const firebase = getFirebase();
+  const provider = new firebase.auth.FacebookAuthProvider();
+  dispatch({ type: actionTypes.AUTH_START });
+  try {
+    await firebase.auth().signInWithPopup(provider);
     dispatch({ type: actionTypes.AUTH_SUCCESS });
   } catch (err) {
     dispatch({ type: actionTypes.AUTH_FAIL, payload: err.message });
