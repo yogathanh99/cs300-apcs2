@@ -12,11 +12,12 @@ export const Wrapper = styled.div`
   height: 100%;
   margin-top: 150px;
   margin-right: 100px;
+  margin-bottom: 100px;
 `;
 export const Box = styled.div`
   padding-top: 20px;
   padding-left: 30px;
-  margin-left: 150px;
+  margin-left: 500px;
   height: 100%;
   margin-bottom: 20px;
   border: 2px solid black;
@@ -27,6 +28,7 @@ export const StyleStrongText = styled.div`
 `;
 export const Table = styled.div`
   display: flex;
+  margin-bottom: 100px;
   justify-content: center;
   thead {
     text-align: center;
@@ -44,10 +46,8 @@ export const Table = styled.div`
     border: 1px solid black;
   }
 `;
-export const Button = styled.div`
-  display: inline-block;
-  text-align: center;
-  width: 200px;
-  height: 60px;
-  border: 1px solid black;
+export const Data = styled.input`
+  border-bottom: none !important;
+  position: absolute;
+  left: 700px;
 `;

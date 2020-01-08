@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import './style.css';
+import "./style.css";
 
 const Wrapper = styled.div`
   display: flex;
@@ -9,15 +9,15 @@ const Wrapper = styled.div`
   margin-top: 3rem;
 `;
 
-const InputForm = ({ name }) => {
+const InputForm = ({ name, type, onChange, value }) => {
   return (
     <Wrapper>
-      <div className='group'>
-        <input type='text' required />
-        <span className='highlight' />
-        <span className='bar' />
+      <form className="group">
+        <input type={type} onChange={onChange} value={value} />
+        <span className="highlight" />
+        <span className="bar" />
         <label>{name}</label>
-      </div>
+      </form>
     </Wrapper>
   );
 };
