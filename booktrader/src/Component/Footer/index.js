@@ -1,6 +1,6 @@
-import React from 'react';
-import { Container } from 'reactstrap';
-import styled from 'styled-components';
+import React from "react";
+import { Container } from "reactstrap";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -16,16 +16,17 @@ const StyleContainer = styled(Container)`
 `;
 
 const Title = styled.h5`
-  font-family: 'Manjari', sans-serif;
+  font-family: "Manjari", sans-serif;
   font-size: 2rem;
   line-height: 2rem;
 `;
 
 const Content = styled.p`
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 `;
-
-const Footer = ({ title, children }) => {
+const Footer = () => {
+  const title = "APCS-17CTT2-Group01";
+  const children = "Lecturer: Mrs Minh Tuyen";
   return (
     <>
       {title ? (
