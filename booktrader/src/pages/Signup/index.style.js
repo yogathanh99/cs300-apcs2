@@ -51,3 +51,8 @@ export const Right = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const MessageWrapper = styled.div`
+  position: absolute;
+  bottom: 0rem;
+`;
