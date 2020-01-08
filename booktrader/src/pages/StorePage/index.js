@@ -2,21 +2,15 @@ import React, { useEffect } from 'react';
 import { Jumbotron, Container } from 'reactstrap';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import base64 from 'base-64';
 
 import cover from '../../assets/cover.png';
-import bookCover from '../../assets/book-cover.png';
 import { ReactComponent as Magnifier } from '../../assets/magnifying-glass.svg';
-import BookTab from '../../Component/BookTab';
+import { Input } from '../../Component/InputForm';
 import Footer from '../../Component/Footer';
 import FourColGrid from '../../Component/FourColGrid';
 import BookThumb from '../../Component/BookThumb';
-import {
-  WrapSearch,
-  Line,
-  WrapperTags,
-  Tag,
-  WrapperBooks,
-} from './index.style';
+import { WrapSearch, WrapperInput, WrapperTags, Tag } from './index.style';
 
 import data from '../../data/data.json';
 import * as actions from '../../store/actions';
@@ -33,10 +27,16 @@ const Wrapper = styled.div`
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 `;
 
-const StorePage = ({ books, fetchBooks }) => {
+const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
+
+  console.log(books.length, books);
+
+  const search = searchValue => {
+    searchBooks(searchValue);
+  };
 
   return (
     <>
@@ -53,7 +53,9 @@ const StorePage = ({ books, fetchBooks }) => {
           <WrapSearch>
             <span>
               <p>Search:</p>
-              <Line />
+              <WrapperInput>
+                <Input searchVal={search} />
+              </WrapperInput>
               <StyleMagnifier />
             </span>
             <WrapperTags>
@@ -69,26 +71,31 @@ const StorePage = ({ books, fetchBooks }) => {
           marginTop: '2rem',
         }}
       >
-        <FourColGrid>
-          <BookThumb image={bookCover} />
-          <BookThumb image={bookCover} />
-          <BookThumb image={bookCover} />
-          <BookThumb image={bookCover} />
-          <BookThumb image={bookCover} />
-          <BookThumb image={bookCover} />
-          <BookThumb image={bookCover} />
-          <BookThumb image={bookCover} />
-        </FourColGrid>
-        {/* <WrapperBooks>Newest books</WrapperBooks>
-        <BookTab img={cover} title='Lorem'>
-          qualisque pro. Duo laoreet dissentiunt ei, autem prodesset deseruisse
-          in quo.
-        </BookTab>
-        <WrapperBooks>Popular books</WrapperBooks>
-        <BookTab img={cover} title='Lorem'>
-          qualisque pro. Duo laoreet dissentiunt ei, autem prodesset deseruisse
-          in quo.
-        </BookTab> */}
+        {books.length === 1 ? (
+          <FourColGrid>
+            <BookThumb
+              key={books[0].name}
+              image={books[0].coverImage}
+              title={books[0].name}
+              author={books[0].author[0]}
+              username='Thanh Vo'
+              avaiable
+            />
+          </FourColGrid>
+        ) : (
+          <FourColGrid>
+            {books.map(book => (
+              <BookThumb
+                key={book.name}
+                image={book.coverImage}
+                title={base64.decode(book.name) || book.name}
+                author={book.author[0]}
+                username='Thanh Vo'
+                avaiable
+              />
+            ))}
+          </FourColGrid>
+        )}
       </Container>
       <div style={{ marginTop: '2rem' }}>
         <Footer title='BookTrader'>
@@ -101,13 +108,14 @@ const StorePage = ({ books, fetchBooks }) => {
 };
 
 const mapStateToProps = state => ({
-  books: state.books.books,
+  books: state.books.booksData,
   loading: state.books.loading,
   error: state.books.error,
 });
 
 const mapDispatchToProps = {
   fetchBooks: actions.fetchBooks,
+  searchBooks: actions.searchBooks,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StorePage);

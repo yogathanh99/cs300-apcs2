@@ -31,6 +31,12 @@ export const Line = styled.div`
   right: 0;
 `;
 
+export const WrapperInput = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: -2rem;
+`;
+
 export const Tag = styled.span`
   font-family: 'Manjari', sans-serif;
   font-size: 2rem;

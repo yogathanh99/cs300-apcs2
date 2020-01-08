@@ -25,9 +25,11 @@ const FourColGrid = ({ children }) => {
   return (
     <div className='rmdb-grid'>
       <Content>
-        {children.map((element, i) => (
-          <Element>{element}</Element>
-        ))}
+        {children.length > 1 ? (
+          children.map((element, i) => <Element key={i}>{element}</Element>)
+        ) : (
+          <Element>{children}</Element>
+        )}
       </Content>
     </div>
   );

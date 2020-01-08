@@ -10,8 +10,8 @@ import VerifyEmail from './pages/VerifyEmail';
 import StorePage from './pages/StorePage';
 import Detail from './pages/Detail';
 import Profile from './pages/Profile';
+import Upload from './pages/Upload';
 import Layout from './hoc/Layout';
-// import './App.css';
 
 function App({ loggedIn, emailVerified, photoURL }) {
   if (/facebook.com/.test(photoURL)) emailVerified = true;
@@ -29,6 +29,7 @@ function App({ loggedIn, emailVerified, photoURL }) {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/store' component={StorePage} />
+        <Route exact path='/upload' component={Upload} />
         <Route exact path='/logout' component={Logout} />
         <Route exact path='/profile' component={Profile} />
         <Route path='/detail' component={Detail} />

@@ -5,7 +5,6 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import * as actions from '../../store/actions';
 
-import firebase from '../../Firebase';
 import InputForm from '../../Component/InputForm';
 import Button from '../../Component/Button';
 import Message from '../../Component/Message';
