@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Button = styled.button`
-  font-family: "Manjari", sans-serif;
+  font-family: 'Manjari', sans-serif;
   font-size: 3.5rem;
   background: var(--color-mainButton);
   width: 40rem;
@@ -14,7 +15,7 @@ export const Button = styled.button`
 `;
 
 export const StyleText = styled.p`
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   margin-top: 1rem;
   font-size: 2.8rem;
   font-weight: normal;
@@ -37,4 +38,19 @@ export const Style = styled.div`
   padding: 0;
   margin: 0;
   position: relative;
+`;
+
+export const StyleLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+`;
+
+export const MessageWrapper = styled.div`
+  position: absolute;
+  bottom: 0rem;
 `;
