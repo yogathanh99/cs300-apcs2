@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   margin-top: 7rem;
@@ -11,20 +11,20 @@ export const Img = styled.img`
 `;
 
 export const Button = styled.button`
-  font-family: 'Manjari', sans-serif;
+  font-family: "Manjari", sans-serif;
   font-size: 3.5rem;
   background: var(--color-mainButton);
   width: 53.5rem;
   height: 8rem;
   border: none;
-  &:forcus-visible,
+  &:focus-visible,
   &:focus {
     outline: 0;
   }
 `;
 
 export const StyleText = styled.p`
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin-top: 5.6rem;
   font-size: 2.8rem;
   font-weight: normal;

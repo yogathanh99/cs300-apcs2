@@ -53,6 +53,8 @@ const InputForm = ({ field, form: { errors, touched }, ...props }) => {
   );
 };
 
+export default InputForm;
+
 export const Input = ({ name, searchVal }) => {
   const [search, setSearch] = useState('');
 
@@ -89,4 +91,15 @@ export const Input = ({ name, searchVal }) => {
   );
 };
 
-export default InputForm;
+export const InputFormGoi = ({ name, type, onChange, value }) => {
+  return (
+    <Wrapper>
+      <form className='group'>
+        <input type={type} onChange={onChange} value={value} />
+        <span className='highlight' />
+        <span className='bar' />
+        <label>{name}</label>
+      </form>
+    </Wrapper>
+  );
+};

@@ -8,7 +8,7 @@ export const Button = styled.button`
   width: 40rem;
   height: 8rem;
   border: none;
-  &:forcus-visible,
+  &:focus-visible,
   &:focus {
     outline: 0;
   }
