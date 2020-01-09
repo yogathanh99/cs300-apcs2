@@ -111,10 +111,6 @@ export const InputUpload = ({ placeholder, handleValue, name }) => {
     setVal(e.target.value);
   };
 
-  const resetInputField = () => {
-    setVal('');
-  };
-
   const submitSearch = e => {
     e.preventDefault();
 

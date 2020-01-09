@@ -15,7 +15,7 @@ import {
   Table,
   Data,
 } from '../Profile/index.style';
-import InputForm, { InputFormGoi } from '../../Component/InputForm';
+import InputForm from '../../Component/InputForm';
 
 const schema = Yup.object().shape({
   currentPassword: Yup.string()
@@ -33,14 +33,6 @@ const StyleFooter = styled(Footer)`
   width: 100%;
   position: absolute;
   bottom: 0;
-`;
-
-const StyleInputForm = styled(InputFormGoi)`
-  margin: 0;
-  padding: 0;
-  width: 500px;
-  height: 20px;
-  display: inline;
 `;
 
 const StyleLink = styled(Link)`
@@ -67,7 +59,6 @@ const Profile = ({ firebase }) => {
   const name = firebase.profile.name ? firebase.profile.name : data.displayName;
   const [username, setUsername] = useState(name);
   const [email, setEmail] = useState(data.email);
-  const [password, setPassword] = useState('hello');
   const [currentPassword, setcurrentPassword] = useState('');
   const [newPassword, setnewPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
