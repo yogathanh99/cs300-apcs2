@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Footer from '../../Component/Footer';
 import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as Yup from 'yup';
+import { Formik, Field, Form } from 'formik';
+
 import {
   Style,
   Wrapper,
@@ -10,12 +15,26 @@ import {
   Table,
   Data,
 } from '../Profile/index.style';
-import { InputFormGoi } from '../../Component/InputForm';
+import InputForm, { InputFormGoi } from '../../Component/InputForm';
+
+const schema = Yup.object().shape({
+  currentPassword: Yup.string()
+    .required('The current password is required')
+    .min(8, 'Password must have min 8 characters'),
+  newPassword: Yup.string()
+    .required('The new password is required')
+    .min(8, 'Password must have min 8 characters'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('newPassword'), null], `Password doesn't match`)
+    .required('You need to confirm your password.'),
+});
+
 const StyleFooter = styled(Footer)`
   width: 100%;
   position: absolute;
   bottom: 0;
 `;
+
 const StyleInputForm = styled(InputFormGoi)`
   margin: 0;
   padding: 0;
@@ -23,6 +42,17 @@ const StyleInputForm = styled(InputFormGoi)`
   height: 20px;
   display: inline;
 `;
+
+const StyleLink = styled(Link)`
+  color: black;
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+    transition: all 0.5s;
+  }
+`;
+
 //test list book item
 const book_item = [
   {
@@ -31,33 +61,41 @@ const book_item = [
     book_status: 'Available',
   },
 ];
-const Profile = props => {
-  const [username, setUsername] = useState(props.username);
-  const [email, setEmail] = useState(props.email);
+
+const Profile = ({ firebase }) => {
+  const data = firebase.auth.providerData[0];
+  const name = firebase.profile.name ? firebase.profile.name : data.displayName;
+  const [username, setUsername] = useState(name);
+  const [email, setEmail] = useState(data.email);
   const [password, setPassword] = useState('hello');
+  const [currentPassword, setcurrentPassword] = useState('');
+  const [newPassword, setnewPassword] = useState('');
+  const [confirmPassword, setconfirmPassword] = useState('');
+
   const HandleChange = e => {
     return e.target.name === 'email'
       ? setEmail(e.target.value)
       : setUsername(e.target.value);
   };
+
   const listBook = book_item.map(item => (
     <tr key={item.book_id}>
       <td>{item.book_name}</td>
       <td>{item.book_status}</td>
     </tr>
   ));
-  const [currentPassword, setcurrentPassword] = useState('');
-  const [newPassword, setnewPassword] = useState('');
-  const [confirmPassword, setconfirmPassword] = useState('');
+
   const handleSubmitData = e => {
     e.preventDefault();
     //more work with backend
   };
+
   const handleCancel = () => {
     setcurrentPassword('');
     setnewPassword('');
     setconfirmPassword('');
   };
+
   return (
     <Style>
       <Wrapper>
@@ -99,38 +137,50 @@ const Profile = props => {
             }}
             color='success'
           >
-            Upload Book
+            <StyleLink to='/upload'>Upload Book</StyleLink>
           </Button>
         </Box>
         <Box style={{ height: '800px' }}>
           <StyleStrongText>Change password: </StyleStrongText>
           Change your password every once in a while to secure your privacy
           <div style={{ marginLeft: '35px' }}>
-            Current Password:
-            <StyleInputForm
-              onChange={e => {
-                setcurrentPassword(e.target.value);
-                console.log(currentPassword);
+            <Formik
+              initialValues={{
+                currentPassword: '',
+                newPassword: '',
+                confirmPassword: '',
               }}
-              value={currentPassword}
-              type='password'
-            />
-            New Password:{' '}
-            <StyleInputForm
-              onChange={e => {
-                setnewPassword(e.target.value);
+              validationSchema={schema}
+              onSubmit={async (value, { setSubmitting }) => {
+                // await signUp(value);
+                setSubmitting(false);
               }}
-              value={newPassword}
-              type='password'
-            />
-            Confirm Password:
-            <StyleInputForm
-              onChange={e => {
-                setconfirmPassword(e.target.value);
-              }}
-              value={confirmPassword}
-              type='password'
-            />
+            >
+              {({ isSubmitting, isValid }) => (
+                <div>
+                  <Form>
+                    <Field
+                      type='password'
+                      name='currentPassword'
+                      placeholder='Current password...'
+                      component={InputForm}
+                    />
+                    <Field
+                      type='password'
+                      name='newPassword'
+                      placeholder='New password...'
+                      component={InputForm}
+                    />
+                    <Field
+                      type='password'
+                      name='confirmPassword'
+                      placeholder='Re-type your password...'
+                      component={InputForm}
+                    />
+                  </Form>
+                </div>
+              )}
+            </Formik>
           </div>
           <div style={{ marginLeft: '450px' }}>
             <Button
@@ -177,4 +227,8 @@ const Profile = props => {
   );
 };
 
-export default Profile;
+const mapStateToProps = state => ({
+  firebase: state.firebase,
+});
+
+export default connect(mapStateToProps)(Profile);

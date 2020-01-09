@@ -88,6 +88,7 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
               <BookThumb
                 key={book.name}
                 image={book.coverImage}
+                bookName={book.name}
                 title={base64.decode(book.name) || book.name}
                 author={book.author[0]}
                 username='Thanh Vo'

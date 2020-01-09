@@ -103,3 +103,37 @@ export const InputFormGoi = ({ name, type, onChange, value }) => {
     </Wrapper>
   );
 };
+
+export const InputUpload = ({ placeholder, handleValue, name }) => {
+  const [val, setVal] = useState('');
+
+  const handleSearch = e => {
+    setVal(e.target.value);
+  };
+
+  const resetInputField = () => {
+    setVal('');
+  };
+
+  const submitSearch = e => {
+    e.preventDefault();
+
+    handleValue(val, name);
+  };
+
+  return (
+    <Wrapper>
+      <form className='group' onSubmit={submitSearch}>
+        <input
+          type='text'
+          value={val}
+          onChange={handleSearch}
+          placeholder={placeholder}
+        />
+        {/* <span className='highlight' /> */}
+        <span className='bar' />
+        {/* <label>{name}</label> */}
+      </form>
+    </Wrapper>
+  );
+};

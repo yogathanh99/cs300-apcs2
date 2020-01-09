@@ -21,9 +21,10 @@ export const Button = styled.button`
 `;
 
 export const Title = styled.h4`
+  margin-top: 5rem;
   font-family: 'Abhaya Libre', sans-serif;
   margin-bottom: 2rem;
-  font-size: 13rem;
+  font-size: 10rem;
   font-weight: normal;
   line-height: 17rem;
 `;

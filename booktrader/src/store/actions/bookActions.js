@@ -37,3 +37,41 @@ export const searchBooks = searchVal => async dispatch => {
       dispatch({ type: actionTypes.SEARCH_BOOKS_FAIL, payload: err.message });
     });
 };
+
+export const searchBook = searchVal => async dispatch => {
+  dispatch({ type: actionTypes.SEARCH_BOOKS_START });
+  await axios
+    .get(`${SERVER_URL_API}/${searchVal}`)
+    .then(res => {
+      dispatch({
+        type: actionTypes.SEARCH_BOOKS_SUCCESS,
+        payload: res.data.book,
+      });
+    })
+    .catch(err => {
+      dispatch({ type: actionTypes.SEARCH_BOOKS_FAIL, payload: err.message });
+    });
+};
+
+export const insertBook = (val, id) => async dispatch => {
+  dispatch({ type: actionTypes.INSERT_BOOKS_START });
+  console.log(val);
+  console.log(id);
+
+  await axios
+    .post(SERVER_URL_API, val, {
+      headers: {
+        'x-authenticated-uid': id,
+      },
+    })
+    .then(function(response) {
+      console.log(response);
+      dispatch({
+        type: actionTypes.INSERT_BOOKS_SUCCESS,
+      });
+    })
+    .catch(function(err) {
+      console.log(err);
+      dispatch({ type: actionTypes.INSERT_BOOKS_FAIL, payload: err.message });
+    });
+};

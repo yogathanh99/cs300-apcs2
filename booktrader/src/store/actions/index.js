@@ -7,4 +7,4 @@ export {
   verifyEmail,
 } from './authActions';
 
-export { fetchBooks, searchBooks } from './bookActions';
+export { fetchBooks, searchBooks, searchBook, insertBook } from './bookActions';

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-import { Input } from '../../Component/InputForm';
+import { InputUpload } from '../../Component/InputForm';
 import Button from '../../Component/Button';
 import Footer from '../../Component/Footer';
+import Loading from '../../Component/Loading';
+
+import * as actions from '../../store/actions';
 
 const Wrapper = styled.div`
   margin-top: 7rem;
@@ -41,37 +45,94 @@ const Content = styled.div`
   text-align: center;
 `;
 
-const Upload = () => {
+const Upload = ({ loading, firebase, insertBook }) => {
+  const [bookName, setName] = useState('');
+  const [author, setAuthor] = useState('');
+  const [link, setLink] = useState('');
+  const [describe, setDescribe] = useState('');
+
+  const handleVal = (val, name) => {
+    if (name === 'book') setName(val);
+    else if (name === 'author') setAuthor(val);
+    else if (name === 'link') setLink(val);
+    else setDescribe(val);
+  };
+
+  const data = {
+    user: firebase.profile.name,
+    name: bookName,
+    author: [author],
+    description: describe,
+    coverImage: link,
+    statusImage: [],
+  };
+
+  const handleSubmit = () => {
+    insertBook(data, firebase.auth.uid);
+  };
+
   return (
     <Wrapper>
-      <hr />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Input name='What is the name of the book ?' />
-        <TagName>
-          Tags: <Tag>Hello</Tag>
-          <Tag>Hi</Tag>
-        </TagName>
-        <Content>
-          <Input name='What does your book look like ? (Link image)' />
-          <Input name='Describe...' />
-          <Button>Share</Button>
-        </Content>
-      </div>
-      <WrapperFooter>
-        <Footer title='BookTrader'>
-          Lorem ipsum dolor sit amet. Duo laoreet dissentiunt ei, autem
-          prodesset deseruisse in quo.
-        </Footer>
-      </WrapperFooter>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <hr />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <InputUpload
+              name='book'
+              placeholder='What is the name of the book ?'
+              handleValue={handleVal}
+            />
+            <InputUpload
+              name='author'
+              placeholder='What is the name author of the book ?'
+              handleValue={handleVal}
+            />
+            {/* <TagName>
+              Tags: <Tag>Hello</Tag>
+              <Tag>Hi</Tag>
+            </TagName> */}
+            <Content>
+              <InputUpload
+                name='link'
+                placeholder='What does your book look like ? (Link image)'
+                handleValue={handleVal}
+              />
+              <InputUpload
+                name='describe'
+                placeholder='Describe...'
+                handleValue={handleVal}
+              />
+              <Button onClick={handleSubmit}>Share</Button>
+            </Content>
+          </div>
+          <WrapperFooter>
+            <Footer title='BookTrader'>
+              Lorem ipsum dolor sit amet. Duo laoreet dissentiunt ei, autem
+              prodesset deseruisse in quo.
+            </Footer>
+          </WrapperFooter>
+        </>
+      )}
     </Wrapper>
   );
 };
 
-export default Upload;
+const mapStateToProps = state => ({
+  loading: state.auth.loading,
+  firebase: state.firebase,
+});
+
+const mapDispatchToProps = {
+  insertBook: actions.insertBook,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Upload);
