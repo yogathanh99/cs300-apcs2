@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators,
-} from 'reactstrap';
-import book from '../../assets/book1.png';
-import styled from 'styled-components';
+  CarouselIndicators
+} from "reactstrap";
+import book from "../../assets/book1.png";
+import chuaruoi from "../../assets/chuaruoi.png";
+import sodo from "../../assets/sodo.png";
+import sky from "../../assets/sky.png";
+import styled from "styled-components";
 
 const Styles = styled.div`
   .carousel {
@@ -31,16 +34,20 @@ const StyleItem = styled.div`
 const items = [
   {
     src: `${book}`,
-    altText: 'Book 1',
+    altText: "Book 1"
   },
   {
-    src: `${book}`,
-    altText: 'Book 2',
+    src: `${chuaruoi}`,
+    altText: "Book 2"
   },
   {
-    src: `${book}`,
-    altText: 'Book 3',
+    src: `${sodo}`,
+    altText: "Book 3"
   },
+  {
+    src: `${sky}`,
+    altText: "Book 4"
+  }
 ];
 
 const Slideshow = () => {
@@ -87,13 +94,13 @@ const Slideshow = () => {
         />
         {slides}
         <CarouselControl
-          direction='prev'
-          directionText='Previous'
+          direction="prev"
+          directionText="Previous"
           onClickHandler={previous}
         />
         <CarouselControl
-          direction='next'
-          directionText='Next'
+          direction="next"
+          directionText="Next"
           onClickHandler={next}
         />
       </Carousel>
