@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
-import { connect } from 'react-redux';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
+import { connect } from "react-redux";
 
 const Styles = styled.div`
   .navbar {
-    background-color: transparent;
+    width: 100%;
+    background-color: #e9e9e9;
   }
   .navbar-brand {
     font-size: 35px;
@@ -71,12 +72,12 @@ const NavBar = props => {
 
   return (
     <Styles>
-      <StyleNavbar className='mx-4 fixed-top' light expand='md'>
-        <StyleNavBrand to='/'>BookTrader.</StyleNavBrand>
+      <StyleNavbar className=" fixed-top" light expand="md">
+        <StyleNavBrand to="/">BookTrader.</StyleNavBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className='ml-auto' navbar>
-            <StyleName to='/profile'>
+          <Nav className="ml-auto" navbar>
+            <StyleName to="/profile">
               {props.firebase.profile.name
                 ? props.firebase.profile.name
                 : props.firebase.auth.displayName}
@@ -90,7 +91,7 @@ const NavBar = props => {
 };
 
 const mapStateToProps = state => ({
-  firebase: state.firebase,
+  firebase: state.firebase
 });
 
 export default connect(mapStateToProps)(NavBar);

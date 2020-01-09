@@ -69,6 +69,26 @@ export default (state = initState, action) => {
         loading: false,
         error: action.payload,
       };
+
+    case actionTypes.TRADE_BOOKS_START:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+
+    case actionTypes.TRADE_BOOKS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+
+    case actionTypes.TRADE_BOOKS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

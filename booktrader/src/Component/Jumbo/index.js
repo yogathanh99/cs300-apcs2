@@ -29,8 +29,11 @@ const Jumbo = () => {
       <Jumbotron fluid className="jumbo">
         <div className="overlay"></div>
         <Container>
-          <h1>Goi Chi Trung</h1>
-          <p>A slow walker but never walk back</p>
+          <p style={{ fontSize: "25px", marginRight: "550px" }}>
+            “A great book should leave you with many experiences, and slightly
+            exhausted at the end. You live several lives while reading.”
+          </p>
+          <p style={{ fontSize: "20px" }}>William Styron</p>
         </Container>
       </Jumbotron>
     </Styles>

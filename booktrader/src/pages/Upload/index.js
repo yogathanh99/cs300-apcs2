@@ -9,6 +9,8 @@ import Loading from '../../Component/Loading';
 
 import * as actions from '../../store/actions';
 
+const UID = '5dd9491650c68f2d74b4a6ae';
+
 const Wrapper = styled.div`
   margin-top: 7rem;
 `;
@@ -18,27 +20,6 @@ const WrapperFooter = styled.div`
   width: 100%;
   left: 0;
   bottom: 0;
-`;
-
-const Tag = styled.span`
-  font-family: 'Manjari', sans-serif;
-  font-size: 2rem;
-  text-align: center;
-  padding: 0.5rem 0.5rem;
-  margin-right: 2rem;
-  margin-bottom: 2rem;
-  text-transform: capitalize;
-  background: rgba(196, 196, 196, 0.35);
-  cursor: pointer;
-`;
-
-const TagName = styled.p`
-  text-align: center;
-  font-family: Abhaya Libre;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 3rem;
-  line-height: 3rem;
 `;
 
 const Content = styled.div`
@@ -59,16 +40,17 @@ const Upload = ({ loading, firebase, insertBook }) => {
   };
 
   const data = {
-    user: firebase.profile.name,
     name: bookName,
     author: [author],
     description: describe,
     coverImage: link,
     statusImage: [],
+    language: ['Tiếng Việt', 'English'],
+    editedYear: 2015,
   };
 
   const handleSubmit = () => {
-    insertBook(data, firebase.auth.uid);
+    insertBook(data, UID);
   };
 
   return (
@@ -96,10 +78,6 @@ const Upload = ({ loading, firebase, insertBook }) => {
               placeholder='What is the name author of the book ?'
               handleValue={handleVal}
             />
-            {/* <TagName>
-              Tags: <Tag>Hello</Tag>
-              <Tag>Hi</Tag>
-            </TagName> */}
             <Content>
               <InputUpload
                 name='link'
@@ -115,10 +93,7 @@ const Upload = ({ loading, firebase, insertBook }) => {
             </Content>
           </div>
           <WrapperFooter>
-            <Footer title='BookTrader'>
-              Lorem ipsum dolor sit amet. Duo laoreet dissentiunt ei, autem
-              prodesset deseruisse in quo.
-            </Footer>
+            <Footer />
           </WrapperFooter>
         </>
       )}

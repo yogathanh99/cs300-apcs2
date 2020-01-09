@@ -84,7 +84,6 @@ const Profile = ({ firebase }) => {
       <td>{item.book_status}</td>
     </tr>
   ));
-
   const handleSubmitData = e => {
     e.preventDefault();
     //more work with backend

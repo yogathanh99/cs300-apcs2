@@ -32,7 +32,7 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
     fetchBooks();
   }, [fetchBooks]);
 
-  console.log(books.length, books);
+  console.log(books);
 
   const search = searchValue => {
     searchBooks(searchValue);
@@ -89,7 +89,7 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
                 key={book.name}
                 image={book.coverImage}
                 bookName={book.name}
-                title={base64.decode(book.name) || book.name}
+                title={base64.decode(book.name)}
                 author={book.author[0]}
                 username='Thanh Vo'
                 avaiable
@@ -99,10 +99,7 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
         )}
       </Container>
       <div style={{ marginTop: '2rem' }}>
-        <Footer title='BookTrader'>
-          Lorem ipsum dolor sit amet. Duo laoreet dissentiunt ei, autem
-          prodesset deseruisse in quo.
-        </Footer>
+        <Footer />
       </div>
     </>
   );
