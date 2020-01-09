@@ -17,12 +17,13 @@ const StyleContainer = styled(Container)`
 
 const Title = styled.h5`
   font-family: "Manjari", sans-serif;
-  font-size: 2rem;
-  line-height: 2rem;
+  font-size: 25px;
+  line-height: 15px;
 `;
 
 const Content = styled.p`
   font-family: "Open Sans", sans-serif;
+  font-size: 15px;
 `;
 const Footer = () => {
   const title = "APCS-17CTT2-Group01";
