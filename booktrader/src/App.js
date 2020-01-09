@@ -32,7 +32,7 @@ function App({ loggedIn, emailVerified, photoURL }) {
         <Route exact path='/upload' component={Upload} />
         <Route exact path='/logout' component={Logout} />
         <Route exact path='/profile' component={Profile} />
-        <Route path='/detail' component={Detail} />
+        <Route path='/detail/:bookID' component={Detail} />
         <Redirect to='/store' />
       </Switch>
     );
@@ -40,7 +40,7 @@ function App({ loggedIn, emailVerified, photoURL }) {
     routes = (
       <Switch>
         <Route exact path='/signup' component={Signup} />
-        <Route path='/detail' component={Detail} />
+        <Route path='/detail/:bookID' component={Detail} />
         <Route exact path='/store' component={StorePage} />
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />

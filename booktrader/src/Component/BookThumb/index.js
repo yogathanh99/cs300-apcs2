@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Img = styled.img`
   width: 100%;
@@ -63,20 +64,30 @@ const Wrapper = styled.div`
   padding-right: 2rem;
 `;
 
-const BookThumb = ({ image, title, author, username, avaiable }) => {
+const StyleLink = styled(Link)`
+  color: black;
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+`;
+
+const BookThumb = ({ image, title, author, username, avaiable, bookName }) => {
   return (
     <div style={{ border: '1px solid rgba(0,0,0,.25)' }}>
-      <Img src={image} alt='movie' />
-      <Content>
-        <Title>{title}</Title>
-        <Author>{author}</Author>
-        <Upload>
-          Upload by <strong>{username}</strong>
-        </Upload>
-        <Wrapper>
-          <Button avaiable={avaiable}>Borrow</Button>
-        </Wrapper>
-      </Content>
+      <StyleLink to={{ pathname: `/detail/${bookName}` }}>
+        <Img src={image} alt='movie' />
+        <Content>
+          <Title>{title}</Title>
+          <Author>{author}</Author>
+          <Upload>
+            Upload by <strong>{username}</strong>
+          </Upload>
+          <Wrapper>
+            <Button avaiable={avaiable}>Borrow</Button>
+          </Wrapper>
+        </Content>
+      </StyleLink>
     </div>
   );
 };

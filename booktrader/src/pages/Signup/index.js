@@ -34,7 +34,7 @@ const schemaSignUp = Yup.object().shape({
     .required('You need to confirm your password.'),
 });
 
-const Signup = ({ loading, error, signUp, cleanUp }) => {
+const Signup = ({ loading, error, signUp, loginFacebook, cleanUp }) => {
   useEffect(() => {
     return () => {
       cleanUp();
@@ -109,7 +109,12 @@ const Signup = ({ loading, error, signUp, cleanUp }) => {
                 )}
               </Formik>
               <StyleText>or sign up using</StyleText>
-              <LoginFacebook style={{ cursor: 'pointer' }} />
+              <LoginFacebook
+                style={{ cursor: 'pointer' }}
+                onClick={async () => {
+                  await loginFacebook();
+                }}
+              />
               <StyleText>
                 Already have an account?{' '}
                 <StyleStrong>
@@ -130,6 +135,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   signUp: actions.signUp,
+  loginFacebook: actions.loginFacebook,
   cleanUp: actions.cleanUp,
 };
 

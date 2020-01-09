@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { Jumbotron, Container } from "reactstrap";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import base64 from "base-64";
+import React, { useEffect } from 'react';
+import { Jumbotron, Container } from 'reactstrap';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import base64 from 'base-64';
 
-import cover from "../../assets/cover.png";
-import { ReactComponent as Magnifier } from "../../assets/magnifying-glass.svg";
-import { Input } from "../../Component/InputForm";
-import Footer from "../../Component/Footer";
-import FourColGrid from "../../Component/FourColGrid";
-import BookThumb from "../../Component/BookThumb";
-import { WrapSearch, WrapperInput, WrapperTags, Tag } from "./index.style";
+import cover from '../../assets/cover.png';
+import { ReactComponent as Magnifier } from '../../assets/magnifying-glass.svg';
+import { Input } from '../../Component/InputForm';
+import Footer from '../../Component/Footer';
+import FourColGrid from '../../Component/FourColGrid';
+import BookThumb from '../../Component/BookThumb';
+import { WrapSearch, WrapperInput, WrapperTags, Tag } from './index.style';
 
-import data from "../../data/data.json";
-import * as actions from "../../store/actions";
+import data from '../../data/data.json';
+import * as actions from '../../store/actions';
 
 const StyleMagnifier = styled(Magnifier)`
   fill: rgba(0, 0, 0, 0.4);
@@ -32,7 +32,7 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
     fetchBooks();
   }, [fetchBooks]);
 
-  console.log(books.length, books);
+  console.log(books);
 
   const search = searchValue => {
     searchBooks(searchValue);
@@ -44,8 +44,8 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
         <Jumbotron
           style={{
             background: `url(${cover}) center center / cover no-repeat`,
-            height: "60rem",
-            zIndex: "-100"
+            height: '60rem',
+            zIndex: '-100',
           }}
           fluid
         ></Jumbotron>
@@ -68,7 +68,7 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
       </Wrapper>
       <Container
         style={{
-          marginTop: "2rem"
+          marginTop: '2rem',
         }}
       >
         {books.length === 1 ? (
@@ -78,7 +78,7 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
               image={books[0].coverImage}
               title={books[0].name}
               author={books[0].author[0]}
-              username="Thanh Vo"
+              username='Thanh Vo'
               avaiable
             />
           </FourColGrid>
@@ -88,16 +88,17 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
               <BookThumb
                 key={book.name}
                 image={book.coverImage}
-                title={base64.decode(book.name) || book.name}
+                bookName={book.name}
+                title={base64.decode(book.name)}
                 author={book.author[0]}
-                username="Thanh Vo"
+                username='Thanh Vo'
                 avaiable
               />
             ))}
           </FourColGrid>
         )}
       </Container>
-      <div style={{ marginTop: "2rem" }}>
+      <div style={{ marginTop: '2rem' }}>
         <Footer />
       </div>
     </>
@@ -107,12 +108,12 @@ const StorePage = ({ books, fetchBooks, searchBooks, loading }) => {
 const mapStateToProps = state => ({
   books: state.books.booksData,
   loading: state.books.loading,
-  error: state.books.error
+  error: state.books.error,
 });
 
 const mapDispatchToProps = {
   fetchBooks: actions.fetchBooks,
-  searchBooks: actions.searchBooks
+  searchBooks: actions.searchBooks,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StorePage);
